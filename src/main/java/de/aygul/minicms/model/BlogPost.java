@@ -1,5 +1,6 @@
 package de.aygul.minicms.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,11 @@ public class BlogPost {
     private String title;
     private String body;
     private String author;
+
+    @Column(columnDefinition = "DATE")
     private LocalDateTime publicationDate;
+
+    @Enumerated(EnumType.STRING)
     private BlogPostStatus blogPostStatus;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
